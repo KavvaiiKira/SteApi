@@ -1,9 +1,25 @@
-using Microsoft.AspNetCore.ResponseCompression;
+using ApiSteaKK;
+using SteApi.Server.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.RegisterConfig();
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.RegisterServices(builder.Configuration);
+
+builder.Services.AddControllers();
+builder.Services.AddSignalR();
+
+builder.Services.AddMvc(options =>
+{
+    options.EnableEndpointRouting = false;
+})
+.AddNewtonsoftJson();
+
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
