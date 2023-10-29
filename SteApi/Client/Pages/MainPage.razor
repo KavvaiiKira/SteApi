@@ -1,6 +1,67 @@
 ﻿@page "/"
+
 @using SteApi.Client.Services;
 
 @inject ISteamDataService _steamDataService
 
-<h1>Hello, world!</h1>
+<div class="main-section">
+    <div class="main-wrapper row-wrapper">
+        <div class="test-section">
+            <div class="test-header">
+                <span class="test-header-text">User ID by link</span>
+            </div>
+            <div class="test-body">
+                <div class="data-wrapper">
+                    <input type="url" class="data-input" placeholder="User link" @bind-value="@_userUrlInput" />
+                    <button class="do-btn" onclick="@(() => GetUserIdAsync())">
+                        Get user ID
+                    </button>
+                </div>
+                <div class="test-body-output">
+                    @if (!string.IsNullOrEmpty(_userIdOutput))
+                    {
+                        @_userIdOutput
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="test-section">
+            <div class="test-header">
+                <span class="test-header-text">User Games Info</span>
+            </div>
+            <div class="test-body">
+                <div class="data-wrapper">
+                    <input type="number" class="data-input" placeholder="User ID" @bind-value="@_userIdGamesInfoInput" />
+                    <button class="do-btn" onclick="@(() => GetUserGamesInfoAsync())">
+                        Get user Games
+                    </button>
+                </div>
+                <div class="test-body-output">
+                    @if (!string.IsNullOrEmpty(_userGamesInfoOutput))
+                    {
+                        @_userGamesInfoOutput
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="test-section">
+            <div class="test-header">
+                <span class="test-header-text">User Games Names + Time</span>
+            </div>
+            <div class="test-body">
+                <div class="data-wrapper">
+                    <input type="number" class="data-input" placeholder="User ID" @bind-value="@_userIdGamesNameAndTimeInput" />
+                    <button class="do-btn" onclick="@(() => GetUserGamesNameAndTimeAsync())">
+                        Get user Games Names + Time
+                    </button>
+                </div>
+                <div class="test-body-output">
+                    @if (!string.IsNullOrEmpty(_userGamesNameAndTimeOutput))
+                    {
+                        @_userGamesNameAndTimeOutput
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

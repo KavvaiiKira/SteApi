@@ -2,6 +2,10 @@
 {
     public interface ISteApiService
     {
-        Task GetUserAchievements();
+        Task<string> GetUserIdByLinkAsync(string userLink);
+
+        Task<string> GetGamesByUserIdAsync(string userId, bool includeAppInfo = false);
+
+        Task<string> GetGameNamesAndTimeByUserIdAsync(string userId);
     }
 }

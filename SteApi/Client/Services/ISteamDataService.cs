@@ -2,6 +2,10 @@
 {
     public interface ISteamDataService
     {
-        Task GetUserAchievements();
+        Task<string> GetUserIdByLinkAsync(string userLink);
+
+        Task<string> GetUserGamesInfoAsync(string userId, bool includeAppInfo = false);
+
+        Task<string> GetUserGamesNameAndTimeAsync(string userId);
     }
 }

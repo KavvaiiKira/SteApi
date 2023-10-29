@@ -13,12 +13,28 @@ namespace SteApi.Server.Controllers
             _steamDataService = steamDataService;
         }
 
-        [HttpGet("achievements")]
+        [HttpGet("id/{userLink}")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetUserAchievements()
+        public async Task<IActionResult> GetUserIdAsync(string userLink)
         {
-            await _steamDataService.GetUserAchievements();
-            return Ok(string.Empty);
+            var res = await _steamDataService.GetUserIdAsync(userLink ?? string.Empty);
+            return Ok(res);
+        }
+
+        [HttpGet("games/{userId}/{includeAppInfo}")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetUserGamesByIdAsync(string userId, bool includeAppInfo)
+        {
+            var res = await _steamDataService.GetUserGamesByIdAsync(userId ?? string.Empty, includeAppInfo);
+            return Ok(res);
+        }
+
+        [HttpGet("games/nameandtime/{userId}")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetUserGamesNameAndTimeAsync(string userId)
+        {
+            var res = await _steamDataService.GetUserGamesNameAndTimeAsync(userId);
+            return Ok(res);
         }
     }
 }

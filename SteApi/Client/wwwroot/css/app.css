@@ -1,3 +1,8 @@
+body {
+    margin: 0 !important;
+    background-color: rgb(94, 115, 216);
+}
+
 h1:focus {
     outline: none;
 }

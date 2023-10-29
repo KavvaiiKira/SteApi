@@ -11,9 +11,19 @@ namespace SteApi.Server.Services
             _steApiService = steApiService;
         }
 
-        public async Task GetUserAchievements()
+        public async Task<string> GetUserIdAsync(string userLink)
         {
-            await _steApiService.GetUserAchievements();
+            return await _steApiService.GetUserIdByLinkAsync(userLink);
+        }
+
+        public async Task<string> GetUserGamesByIdAsync(string userId, bool includeAppInfo = false)
+        {
+            return await _steApiService.GetGamesByUserIdAsync(userId, includeAppInfo);
+        }
+
+        public async Task<string> GetUserGamesNameAndTimeAsync(string userId)
+        {
+            return await _steApiService.GetGameNamesAndTimeByUserIdAsync(userId);
         }
     }
 }

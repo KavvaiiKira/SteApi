@@ -13,9 +13,20 @@ namespace SteApi.Client.Services
             _baseUri = navigationManager.BaseUri;
         }
 
-        public async Task GetUserAchievements()
+        public async Task<string> GetUserIdByLinkAsync(string userLink)
         {
-            var a = await _httpClient.GetStringAsync($"{_baseUri}api/v1/steamdata/achievements");
+            userLink = userLink.Replace("https://steamcommunity.com/id/", string.Empty);
+            return await _httpClient.GetStringAsync($"{_baseUri}api/v1/steamdata/id/{userLink}");
+        }
+
+        public async Task<string> GetUserGamesInfoAsync(string userId, bool includeAppInfo = false)
+        {
+            return await _httpClient.GetStringAsync($"{_baseUri}api/v1/steamdata/games/{userId}/{includeAppInfo}");
+        }
+
+        public async Task<string> GetUserGamesNameAndTimeAsync(string userId)
+        {
+            return await _httpClient.GetStringAsync($"{_baseUri}api/v1/steamdata/games/nameandtime/{userId}");
         }
     }
 }

@@ -2,9 +2,44 @@
 {
     public partial class MainPage
     {
-        protected override async Task OnInitializedAsync()
+        private string _userUrlInput = string.Empty;
+        private string _userIdGamesInfoInput = string.Empty;
+        private string _userIdGamesNameAndTimeInput = string.Empty;
+
+        private string _userIdOutput = string.Empty;
+        private string _userGamesInfoOutput = string.Empty;
+        private string _userGamesNameAndTimeOutput = string.Empty;
+
+        private async Task GetUserIdAsync()
         {
-            await _steamDataService.GetUserAchievements();
+            if (string.IsNullOrEmpty(_userUrlInput))
+            {
+                return;
+            }
+
+            _userIdOutput = await _steamDataService.GetUserIdByLinkAsync(_userUrlInput);
+
+            StateHasChanged();
+        }
+
+        private async Task GetUserGamesInfoAsync()
+        {
+            if (string.IsNullOrEmpty(_userIdGamesInfoInput))
+            {
+                return;
+            }
+
+            _userGamesInfoOutput = await _steamDataService.GetUserGamesInfoAsync(_userIdGamesInfoInput, true);
+        }
+
+        private async Task GetUserGamesNameAndTimeAsync()
+        {
+            if (string.IsNullOrEmpty(_userIdGamesNameAndTimeInput))
+            {
+                return;
+            }
+
+            _userGamesNameAndTimeOutput = await _steamDataService.GetUserGamesNameAndTimeAsync(_userIdGamesNameAndTimeInput);
         }
     }
 }
