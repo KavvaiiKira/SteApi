@@ -4,6 +4,7 @@
     {
         private string _userUrlInput = string.Empty;
         private string _userIdGamesInfoInput = string.Empty;
+        private bool _includeAppInfo = false;
         private string _userIdGamesNameAndTimeInput = string.Empty;
 
         private string _userIdOutput = string.Empty;
@@ -29,7 +30,7 @@
                 return;
             }
 
-            _userGamesInfoOutput = await _steamDataService.GetUserGamesInfoAsync(_userIdGamesInfoInput, true);
+            _userGamesInfoOutput = await _steamDataService.GetUserGamesInfoAsync(_userIdGamesInfoInput, _includeAppInfo);
         }
 
         private async Task GetUserGamesNameAndTimeAsync()

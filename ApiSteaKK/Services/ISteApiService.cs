@@ -1,4 +1,6 @@
-﻿namespace ApiSteaKK
+﻿using ApiSteaKK.Models;
+
+namespace ApiSteaKK.Services
 {
     public interface ISteApiService
     {
@@ -6,6 +8,6 @@
 
         Task<string> GetGamesByUserIdAsync(string userId, bool includeAppInfo = false);
 
-        Task<string> GetGameNamesAndTimeByUserIdAsync(string userId);
+        Task<string> GetFormattedGamesByUserIdAsync(GamesRequest gamesRequest);
     }
 }

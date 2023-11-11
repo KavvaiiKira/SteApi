@@ -1,4 +1,5 @@
-﻿using ApiSteaKK;
+﻿using ApiSteaKK.Models;
+using ApiSteaKK.Services;
 
 namespace SteApi.Server.Services
 {
@@ -23,7 +24,7 @@ namespace SteApi.Server.Services
 
         public async Task<string> GetUserGamesNameAndTimeAsync(string userId)
         {
-            return await _steApiService.GetGameNamesAndTimeByUserIdAsync(userId);
+            return await _steApiService.GetFormattedGamesByUserIdAsync(new GamesRequest(userId, appName: true, appPlaytime: true, playTimeFormat: PlayTimeFormats.Minutes));
         }
     }
 }

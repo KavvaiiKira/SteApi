@@ -31,6 +31,10 @@
             </div>
             <div class="test-body">
                 <div class="data-wrapper">
+                    <label for="include_app_info">
+                        Include app info
+                    </label>
+                    <input type="checkbox" id="include_app_info" @bind-value="@_includeAppInfo" />
                     <input type="number" class="data-input" placeholder="User ID" @bind-value="@_userIdGamesInfoInput" />
                     <button class="do-btn" onclick="@(() => GetUserGamesInfoAsync())">
                         Get user Games
